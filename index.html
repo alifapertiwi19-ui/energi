@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahan Ajar IPA Interaktif: Energi & Kekekalannya | Ibu Alifa Pertiwi</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon Edukatif -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        secondary: {
+                            50: '#f0fdf4',
+                            500: '#10b981',
+                            600: '#059669',
+                        },
+                        accent: {
+                            50: '#fffbeb',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Kustomisasi Range Slider agar lebih ramah sentuhan dan modern */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            height: 8px;
+            border-radius: 999px;
+            background: #e2e8f0;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: -6px;
+            background-color: #2563eb;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+            transition: transform 0.15s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+        input[type="range"].slider-green::-webkit-slider-thumb {
+            background-color: #059669;
+            box-shadow: 0 2px 6px rgba(5, 150, 105, 0.4);
+        }
+        input[type="range"].slider-amber::-webkit-slider-thumb {
+            background-color: #d97706;
+            box-shadow: 0 2px 6px rgba(217, 119, 6, 0.4);
+        }
+
+        /* Animasi Jalan Raya pada Simulasi Energi Kinetik */
+        @keyframes roadMove {
+            0% { background-position: 0 0; }
+            100% { background-position: -80px 0; }
+        }
+        .road-stripes {
+            background-image: repeating-linear-gradient(
+                90deg,
+                #f8fafc 0px,
+                #f8fafc 40px,
+                transparent 40px,
+                transparent 80px
+            );
+            background-size: 80px 4px;
+            animation: roadMove var(--road-speed, 1s) linear infinite;
+        }
+
+        /* Animasi Getar Mobil saat Kecepatan Tinggi */
+        @keyframes carBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-2px); }
+        }
+        .car-vibrate {
+            animation: carBounce var(--vibrate-speed, 0.3s) ease-in-out infinite;
+        }
+
+        /* Garis Grid Latar Belakang Lab */
+        .lab-grid {
+            background-size: 24px 24px;
+            background-image: 
+                linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-primary-100 selection:text-primary-900">
+
+    <!-- Navigasi Atas Sticky -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Brand & Identitas Guru -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-600 to-indigo-600 flex items-center justify-center text-white shadow-md">
+                        <i class="fa-solid fa-atom text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-display font-bold text-slate-900 text-base sm:text-lg block leading-tight">Modul IPA Interaktif</span>
+                        <span class="text-xs font-medium text-primary-600 block">Disusun oleh: Ibu Alifa Pertiwi</span>
+                    </div>
+                </div>
+
+                <!-- Menu Navigasi Desktop -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium">
+                    <a href="#energi-kinetik" class="px-3 py-2 rounded-lg text-slate-600 hover:text-primary-600 hover:bg-primary-50 transition">1. Energi Kinetik</a>
+                    <a href="#energi-potensial" class="px-3 py-2 rounded-lg text-slate-600 hover:text-secondary-600 hover:bg-secondary-50 transition">2. Energi Potensial</a>
+                    <a href="#energi-mekanik" class="px-3 py-2 rounded-lg text-slate-600 hover:text-accent-600 hover:bg-accent-50 transition">3. Energi Mekanik</a>
+                    <a href="#contoh-soal" class="px-3 py-2 rounded-lg text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 transition">4. Contoh Soal</a>
+                    <a href="#latihan-soal" class="ml-2 px-4 py-2 rounded-xl bg-primary-600 text-white hover:bg-primary-700 shadow-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-pen-to-square"></i> Kuis (10 Soal)
+                    </a>
+                </nav>
+
+                <!-- Tombol Menu Mobile -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none" aria-label="Buka Menu">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1 shadow-lg">
+            <a href="#energi-kinetik" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-primary-50 hover:text-primary-600">1. Energi Kinetik ($E_k$)</a>
+            <a href="#energi-potensial" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-secondary-50 hover:text-secondary-600">2. Energi Potensial ($E_p$)</a>
+            <a href="#energi-mekanik" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-accent-50 hover:text-accent-600">3. Energi Mekanik & Kekekalan</a>
+            <a href="#contoh-soal" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">4. Contoh Soal & Pembahasan</a>
+            <a href="#latihan-soal" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold bg-primary-600 text-white text-center mt-2">5. Latihan Soal (10 Butir)</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner / Pengantar -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-primary-900 to-indigo-950 text-white py-14 sm:py-20">
+        <div class="absolute inset-0 opacity-10">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="hero-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="20" cy="20" r="2" fill="#ffffff" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#hero-pattern)" />
+            </svg>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-blue-200 text-xs sm:text-sm font-medium backdrop-blur-sm">
+                        <i class="fa-solid fa-chalkboard-user text-amber-400"></i>
+                        <span>Bahan Ajar Digital IPA &bull; Disusun oleh: <strong class="text-white">Ibu Alifa Pertiwi</strong></span>
+                    </div>
+
+                    <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                        Energi Kinetik, Energi Potensial, & <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-emerald-300 to-amber-300">Kekekalan Energi Mekanik</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Selamat datang di kelas IPA interaktif! Mari pelajari bagaimana energi bekerja dalam kehidupan sehari-hari melalui simulasi laboratorium virtual, contoh soal bertahap, dan kuis evaluasi mandiri.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <a href="#energi-kinetik" class="px-6 py-3 rounded-xl bg-primary-500 hover:bg-primary-400 text-white font-semibold shadow-lg shadow-primary-900/40 transition flex items-center gap-2">
+                            <span>Mulai Belajar</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="#latihan-soal" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold backdrop-blur-sm transition flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-emerald-400"></i>
+                            <span>Langsung ke Latihan Soal</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kartu Tujuan Pembelajaran -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 shadow-2xl">
+                        <h2 class="font-display font-bold text-lg text-white flex items-center gap-2.5 mb-4">
+                            <span class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </span>
+                            Tujuan Pembelajaran
+                        </h2>
+                        <ul class="space-y-3 text-sm text-slate-200">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                                <span>Menjelaskan konsep dan menghitung besar <strong>Energi Kinetik ($E_k$)</strong> benda bergerak.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                                <span>Menganalisis pengaruh massa dan ketinggian terhadap <strong>Energi Potensial Gravitasi ($E_p$)</strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                                <span>Membuktikan <strong>Hukum Kekekalan Energi Mekanik</strong> melalui simulasi lintasan roller coaster.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                                <span>Menyelesaikan 10 soal penerapan konsep energi secara tepat dan sistematis.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTEN UTAMA -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN 1: ENERGI KINETIK                                  -->
+        <!-- ========================================================= -->
+        <section id="energi-kinetik" class="scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="w-10 h-10 rounded-xl bg-primary-100 text-primary-700 font-display font-bold text-lg flex items-center justify-center">1</span>
+                <div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Energi Kinetik ($E_k$)</h2>
+                    <p class="text-slate-500 text-sm">Energi yang dimiliki oleh benda karena geraknya</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Penjelasan Konsep & Rumus -->
+                <div class="lg:col-span-5 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 text-primary-700 text-xs font-semibold">
+                            <i class="fa-solid fa-bolt"></i> Konsep Dasar
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">
+                            <strong>Energi Kinetik</strong> adalah energi yang dimiliki oleh suatu benda yang sedang bergerak. Semakin besar <strong>massa</strong> benda dan semakin cepat <strong>kelajuannya</strong>, maka semakin besar pula energi kinetik yang dimilikinya.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-sm">
+                            <em>Contoh sehari-hari:</em> Mobil yang melaju di jalan tol, anak yang berlari, air terjun yang mengalir deras, hingga bola yang ditendang.
+                        </p>
+
+                        <!-- Kotak Rumus -->
+                        <div class="bg-gradient-to-r from-primary-50 to-indigo-50 border border-primary-200 rounded-xl p-5 text-center my-4">
+                            <span class="text-xs uppercase tracking-wider font-bold text-primary-600 block mb-2">Rumus Energi Kinetik</span>
+                            <div class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-wide">
+                                E<sub>k</sub> = &frac12; &middot; m &middot; v<sup>2</sup>
+                            </div>
+                        </div>
+
+                        <!-- Keterangan Simbol -->
+                        <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 text-sm space-y-2">
+                            <p class="font-semibold text-slate-800 mb-1">Keterangan Satuan (SI):</p>
+                            <div class="grid grid-cols-1 gap-1.5 text-slate-600">
+                                <div><strong class="text-primary-700 font-mono">E<sub>k</sub></strong> = Energi Kinetik (Joule atau <strong>J</strong>)</div>
+                                <div><strong class="text-primary-700 font-mono">m</strong> = Massa benda (kilogram atau <strong>kg</strong>)</div>
+                                <div><strong class="text-primary-700 font-mono">v</strong> = Kecepatan benda (meter/sekon atau <strong>m/s</strong>)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-start gap-2.5">
+                        <i class="fa-solid fa-lightbulb text-amber-500 text-base mt-0.5"></i>
+                        <span><strong>Catatan Penting:</strong> Karena kecepatan ($v$) dikuadratkan, jika kecepatan benda menjadi <strong>2 kali lipat</strong>, energi kinetiknya meningkat menjadi <strong>4 kali lipat</strong>!</span>
+                    </div>
+                </div>
+
+                <!-- Simulasi Interaktif Energi Kinetik -->
+                <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <h3 class="font-display font-bold text-lg text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-flask text-primary-600"></i>
+                                Simulasi Laboratorium: Mobil Bergerak
+                            </h3>
+                            <span class="text-xs font-medium px-2.5 py-1 rounded-md bg-slate-100 text-slate-600">Geser slider untuk menguji</span>
+                        </div>
+
+                        <!-- Area Visualisasi Jalan & Mobil -->
+                        <div class="relative w-full h-52 rounded-2xl overflow-hidden bg-gradient-to-b from-sky-200 via-sky-100 to-emerald-100 border border-slate-200 mb-6 flex flex-col justify-end">
+                            <!-- Awan Dekoratif -->
+                            <div class="absolute top-4 left-8 text-white/80 text-3xl"><i class="fa-solid fa-cloud"></i></div>
+                            <div class="absolute top-7 right-14 text-white/70 text-2xl"><i class="fa-solid fa-cloud"></i></div>
+
+                            <!-- Indikator Kecepatan & Angin -->
+                            <div id="ek-wind-lines" class="absolute bottom-20 left-1/2 -translate-x-28 flex flex-col gap-1.5 opacity-0 transition-opacity duration-300">
+                                <div class="w-12 h-0.5 bg-white rounded-full"></div>
+                                <div class="w-16 h-0.5 bg-white rounded-full ml-3"></div>
+                                <div class="w-10 h-0.5 bg-white rounded-full"></div>
+                            </div>
+
+                            <!-- Mobil SVG Dinamis -->
+                            <div id="ek-car-wrapper" class="relative z-10 mx-auto mb-3 transition-transform duration-300" style="transform: scale(1);">
+                                <svg width="130" height="58" viewBox="0 0 130 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Badan Mobil -->
+                                    <path d="M18 32L32 14C34.5 11 38 9 42 9H82C86.5 9 90.5 11.5 93 15L104 32H118C122.4 32 126 35.6 126 40V44C126 46.2 124.2 48 122 48H12C9.8 48 8 46.2 8 44V38C8 34.7 10.7 32 14 32H18Z" fill="#2563EB"/>
+                                    <!-- Kaca Jendela -->
+                                    <path d="M36 16H60V29H26L36 16Z" fill="#BAE6FD"/>
+                                    <path d="M65 16H84L94 29H65V16Z" fill="#BAE6FD"/>
+                                    <!-- Lampu Depan -->
+                                    <rect x="120" y="35" width="6" height="5" rx="2" fill="#FDE047"/>
+                                    <!-- Roda Belakang -->
+                                    <circle cx="34" cy="47" r="10" fill="#1E293B"/>
+                                    <circle cx="34" cy="47" r="4.5" fill="#94A3B8"/>
+                                    <!-- Roda Depan -->
+                                    <circle cx="98" cy="47" r="10" fill="#1E293B"/>
+                                    <circle cx="98" cy="47" r="4.5" fill="#94A3B8"/>
+                                </svg>
+                                <div class="text-center -mt-1">
+                                    <span id="ek-car-badge" class="inline-block px-2 py-0.5 bg-slate-900/80 text-white text-[10px] font-mono rounded-full">m = 500 kg</span>
+                                </div>
+                            </div>
+
+                            <!-- Aspal Jalan Raya -->
+                            <div class="w-full h-12 bg-slate-700 border-t-4 border-slate-500 relative flex items-center">
+                                <div id="ek-road" class="w-full h-1 road-stripes" style="animation-play-state: running; --road-speed: 0.8s;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Kontrol Slider -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                            <!-- Slider Massa -->
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="ek-mass" class="text-sm font-semibold text-slate-700">Massa Benda ($m$)</label>
+                                    <span id="ek-mass-val" class="font-mono font-bold text-primary-700 bg-primary-100 px-2.5 py-0.5 rounded-md text-sm">500 kg</span>
+                                </div>
+                                <input type="range" id="ek-mass" min="100" max="2000" step="50" value="500" class="w-full">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span>100 kg</span>
+                                    <span>1.000 kg</span>
+                                    <span>2.000 kg</span>
+                                </div>
+                            </div>
+
+                            <!-- Slider Kecepatan -->
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="ek-vel" class="text-sm font-semibold text-slate-700">Kecepatan ($v$)</label>
+                                    <span id="ek-vel-val" class="font-mono font-bold text-primary-700 bg-primary-100 px-2.5 py-0.5 rounded-md text-sm">10 m/s</span>
+                                </div>
+                                <input type="range" id="ek-vel" min="0" max="40" step="1" value="10" class="w-full">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span>0 m/s (Diam)</span>
+                                    <span>20 m/s</span>
+                                    <span>40 m/s</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Perhitungan Real-time -->
+                    <div class="bg-primary-900 text-white rounded-xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs text-blue-200 block">Perhitungan Real-time:</span>
+                            <div id="ek-formula-live" class="font-mono text-xs sm:text-sm text-blue-100 mt-0.5">
+                                E<sub>k</sub> = &frac12; &times; 500 &times; 10<sup>2</sup>
+                            </div>
+                        </div>
+                        <div class="text-center sm:text-right">
+                            <span class="text-xs uppercase tracking-wider text-blue-300 block">Hasil Energi Kinetik</span>
+                            <div id="ek-result" class="font-display text-2xl sm:text-3xl font-extrabold text-amber-300">
+                                25.000 J <span class="text-sm font-normal text-blue-200">(25 kJ)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN 2: ENERGI POTENSIAL                                -->
+        <!-- ========================================================= -->
+        <section id="energi-potensial" class="scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="w-10 h-10 rounded-xl bg-secondary-100 text-secondary-700 font-display font-bold text-lg flex items-center justify-center">2</span>
+                <div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Energi Potensial Gravitasi ($E_p$)</h2>
+                    <p class="text-slate-500 text-sm">Energi yang tersimpan pada benda karena kedudukan atau ketinggiannya</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Penjelasan Konsep & Rumus -->
+                <div class="lg:col-span-5 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-50 text-secondary-700 text-xs font-semibold">
+                            <i class="fa-solid fa-arrow-up-from-ground-water"></i> Konsep Dasar
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">
+                            <strong>Energi Potensial Gravitasi</strong> adalah energi yang dimiliki suatu benda karena posisi atau ketinggiannya terhadap suatu bidang acuan (permukaan tanah). Semakin tinggi posisi benda dan semakin besar massanya, semakin besar energi potensialnya.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-sm">
+                            <em>Contoh sehari-hari:</em> Buah kelapa yang menggantung di pohon, air di dalam bendungan (PLTA), dan penerjun payung sebelum melompat.
+                        </p>
+
+                        <!-- Kotak Rumus -->
+                        <div class="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-xl p-5 text-center my-4">
+                            <span class="text-xs uppercase tracking-wider font-bold text-secondary-600 block mb-2">Rumus Energi Potensial</span>
+                            <div class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-wide">
+                                E<sub>p</sub> = m &middot; g &middot; h
+                            </div>
+                        </div>
+
+                        <!-- Keterangan Simbol -->
+                        <div class="bg-slate-50 rounded-xl p-4 border border-slate-200/80 text-sm space-y-2">
+                            <p class="font-semibold text-slate-800 mb-1">Keterangan Satuan (SI):</p>
+                            <div class="grid grid-cols-1 gap-1.5 text-slate-600">
+                                <div><strong class="text-secondary-700 font-mono">E<sub>p</sub></strong> = Energi Potensial (Joule atau <strong>J</strong>)</div>
+                                <div><strong class="text-secondary-700 font-mono">m</strong> = Massa benda (kilogram atau <strong>kg</strong>)</div>
+                                <div><strong class="text-secondary-700 font-mono">g</strong> = Percepatan gravitasi bumi (<strong>10 m/s<sup>2</sup></strong> atau 9,8 m/s<sup>2</sup>)</div>
+                                <div><strong class="text-secondary-700 font-mono">h</strong> = Ketinggian benda dari acuan (meter atau <strong>m</strong>)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 flex items-start gap-2.5">
+                        <i class="fa-solid fa-circle-info text-secondary-600 text-base mt-0.5"></i>
+                        <span>Jika benda berada tepat di permukaan tanah ($h = 0\text{ m}$), maka nilai energi potensialnya adalah <strong>$0\text{ Joule}$</strong>.</span>
+                    </div>
+                </div>
+
+                <!-- Simulasi Interaktif Energi Potensial -->
+                <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <h3 class="font-display font-bold text-lg text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-building text-secondary-600"></i>
+                                Simulasi Laboratorium: Ketinggian Benda
+                            </h3>
+                            <span class="text-xs font-medium px-2.5 py-1 rounded-md bg-emerald-50 text-secondary-700">g = 10 m/s<sup>2</sup></span>
+                        </div>
+
+                        <!-- Area Visualisasi Gedung & Penggaris Ketinggian -->
+                        <div class="relative w-full h-64 rounded-2xl overflow-hidden bg-gradient-to-b from-sky-100 to-slate-50 lab-grid border border-slate-200 mb-6 flex items-end justify-between px-6 sm:px-12 pb-6">
+                            <!-- Penggaris Ketinggian di Sisi Kiri -->
+                            <div class="h-48 border-l-2 border-slate-400 flex flex-col justify-between text-[11px] font-mono text-slate-500 pl-2 relative">
+                                <span>50 m —</span>
+                                <span>40 m —</span>
+                                <span>30 m —</span>
+                                <span>20 m —</span>
+                                <span>10 m —</span>
+                                <span>0 m (Tanah)</span>
+                            </div>
+
+                            <!-- Menara / Gedung Acuan -->
+                            <div class="w-24 sm:w-28 h-48 bg-slate-200 border-x-2 border-t-2 border-slate-300 rounded-t-lg relative flex flex-col justify-around p-2">
+                                <div class="grid grid-cols-2 gap-1.5">
+                                    <div class="h-4 bg-sky-200 rounded-sm"></div>
+                                    <div class="h-4 bg-sky-200 rounded-sm"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-1.5">
+                                    <div class="h-4 bg-sky-200 rounded-sm"></div>
+                                    <div class="h-4 bg-sky-200 rounded-sm"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-1.5">
+                                    <div class="h-4 bg-sky-200 rounded-sm"></div>
+                                    <div class="h-4 bg-sky-200 rounded-sm"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-1.5">
+                                    <div class="h-4 bg-sky-200 rounded-sm"></div>
+                                    <div class="h-4 bg-sky-200 rounded-sm"></div>
+                                </div>
+                            </div>
+
+                            <!-- Area Benda Melayang (Bola/Beban) -->
+                            <div class="relative h-48 w-32 flex flex-col items-center justify-end">
+                                <!-- Garis Putus-putus Penunjuk Ketinggian -->
+                                <div id="ep-height-line" class="w-0.5 border-l-2 border-dashed border-secondary-600 transition-all duration-150" style="height: 96px;"></div>
+
+                                <!-- Objek Bola Beban -->
+                                <div id="ep-ball" class="absolute transition-all duration-150 flex flex-col items-center" style="bottom: 96px;">
+                                    <span id="ep-ball-label" class="mb-1 px-2 py-0.5 rounded bg-slate-800 text-white text-[10px] font-mono whitespace-nowrap shadow">
+                                        h = 25 m
+                                    </span>
+                                    <div id="ep-ball-circle" class="w-11 h-11 rounded-full bg-gradient-to-br from-emerald-400 to-teal-700 shadow-lg border-2 border-white flex items-center justify-center text-white font-bold text-xs">
+                                        5kg
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Permukaan Tanah -->
+                            <div class="absolute bottom-0 left-0 right-0 h-6 bg-emerald-700 border-t-4 border-emerald-500 flex items-center justify-center">
+                                <span class="text-[10px] font-semibold text-emerald-100 uppercase tracking-widest">Permukaan Tanah (Acuan h = 0 m)</span>
+                            </div>
+                        </div>
+
+                        <!-- Kontrol Slider -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                            <!-- Slider Massa -->
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="ep-mass" class="text-sm font-semibold text-slate-700">Massa Benda ($m$)</label>
+                                    <span id="ep-mass-val" class="font-mono font-bold text-secondary-700 bg-secondary-100 px-2.5 py-0.5 rounded-md text-sm">5 kg</span>
+                                </div>
+                                <input type="range" id="ep-mass" min="1" max="50" step="1" value="5" class="w-full slider-green">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span>1 kg</span>
+                                    <span>25 kg</span>
+                                    <span>50 kg</span>
+                                </div>
+                            </div>
+
+                            <!-- Slider Ketinggian -->
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="ep-height" class="text-sm font-semibold text-slate-700">Ketinggian ($h$)</label>
+                                    <span id="ep-height-val" class="font-mono font-bold text-secondary-700 bg-secondary-100 px-2.5 py-0.5 rounded-md text-sm">25 m</span>
+                                </div>
+                                <input type="range" id="ep-height" min="0" max="50" step="1" value="25" class="w-full slider-green">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span>0 m</span>
+                                    <span>25 m</span>
+                                    <span>50 m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Perhitungan Real-time -->
+                    <div class="bg-emerald-900 text-white rounded-xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs text-emerald-200 block">Perhitungan Real-time (g = 10 m/s<sup>2</sup>):</span>
+                            <div id="ep-formula-live" class="font-mono text-xs sm:text-sm text-emerald-100 mt-0.5">
+                                E<sub>p</sub> = 5 &times; 10 &times; 25
+                            </div>
+                        </div>
+                        <div class="text-center sm:text-right">
+                            <span class="text-xs uppercase tracking-wider text-emerald-300 block">Hasil Energi Potensial</span>
+                            <div id="ep-result" class="font-display text-2xl sm:text-3xl font-extrabold text-amber-300">
+                                1.250 J
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN 3: ENERGI MEKANIK & KEKEKALAN ENERGI               -->
+        <!-- ========================================================= -->
+        <section id="energi-mekanik" class="scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="w-10 h-10 rounded-xl bg-accent-100 text-accent-700 font-display font-bold text-lg flex items-center justify-center">3</span>
+                <div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Energi Mekanik & Hukum Kekekalan Energi</h2>
+                    <p class="text-slate-500 text-sm">Energi tidak dapat diciptakan atau dimusnahkan, hanya berubah bentuk</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-8">
+                <!-- Penjelasan & Rumus -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 text-accent-700 text-xs font-semibold">
+                            <i class="fa-solid fa-infinity"></i> Hukum Kekekalan Energi Mekanik
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">
+                            <strong>Energi Mekanik ($E_m$)</strong> adalah jumlah total dari Energi Kinetik dan Energi Potensial yang dimiliki oleh suatu benda pada suatu titik.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed">
+                            Menurut <strong>Hukum Kekekalan Energi Mekanik</strong>, jika tidak ada gaya luar (seperti gaya gesek udara) yang bekerja pada sistem, maka <strong>jumlah energi mekanik benda selalu konstan (tetap)</strong> di setiap posisi lintasan. Ketika benda jatuh ke bawah, $E_p$ berkurang dan berubah menjadi $E_k$ yang semakin besar.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-amber-50/80 border border-amber-200 rounded-xl p-5 text-center flex flex-col justify-center">
+                            <span class="text-xs uppercase font-bold text-amber-700 mb-1">Rumus Energi Mekanik</span>
+                            <div class="font-display text-2xl font-extrabold text-slate-900">
+                                E<sub>m</sub> = E<sub>k</sub> + E<sub>p</sub>
+                            </div>
+                        </div>
+                        <div class="bg-indigo-50/80 border border-indigo-200 rounded-xl p-5 text-center flex flex-col justify-center">
+                            <span class="text-xs uppercase font-bold text-indigo-700 mb-1">Hukum Kekekalan</span>
+                            <div class="font-display text-xl font-extrabold text-slate-900">
+                                E<sub>m1</sub> = E<sub>m2</sub>
+                            </div>
+                            <div class="text-xs font-mono text-slate-600 mt-1">
+                                E<sub>k1</sub> + E<sub>p1</sub> = E<sub>k2</sub> + E<sub>p2</sub>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-slate-200">
+
+                <!-- Simulasi Interaktif Roller Coaster & Diagram Batang Real-time -->
+                <div>
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-slate-900 flex items-center gap-2">
+                                <i class="fa-solid fa-roller-coaster text-amber-600"></i>
+                                Simulasi Lintasan Roller Coaster (Tanpa Gesekan)
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-500">Kereta bermassa <strong>m = 2 kg</strong> dilepas dari puncak ketinggian maksimal <strong>h<sub>maks</sub> = 20 m</strong> ($g = 10\text{ m/s}^2$, sehingga $E_m = 400\text{ J}$ konstan).</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button type="button" onclick="setEmHeight(20)" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Puncak (20m)</button>
+                            <button type="button" onclick="setEmHeight(10)" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Tengah (10m)</button>
+                            <button type="button" onclick="setEmHeight(0)" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Dasar (0m)</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <!-- Visualisasi Lintasan SVG -->
+                        <div class="lg:col-span-7 bg-slate-900 rounded-2xl p-4 sm:p-6 relative overflow-hidden border border-slate-800">
+                            <svg id="coaster-svg" viewBox="0 0 500 260" class="w-full h-auto">
+                                <!-- Grid Latar -->
+                                <line x1="40" y1="30" x2="470" y2="30" stroke="#334155" stroke-dasharray="4 4" stroke-width="1"/>
+                                <line x1="40" y1="125" x2="470" y2="125" stroke="#334155" stroke-dasharray="4 4" stroke-width="1"/>
+                                <line x1="40" y1="220" x2="470" y2="220" stroke="#475569" stroke-width="2"/>
+
+                                <!-- Label Ketinggian -->
+                                <text x="10" y="34" fill="#94a3b8" font-size="11" font-family="monospace">20m</text>
+                                <text x="10" y="129" fill="#94a3b8" font-size="11" font-family="monospace">10m</text>
+                                <text x="15" y="224" fill="#94a3b8" font-size="11" font-family="monospace">0m</text>
+
+                                <!-- Tiang Penyangga Lintasan -->
+                                <line x1="60" y1="30" x2="60" y2="220" stroke="#475569" stroke-width="3"/>
+                                <line x1="150" y1="125" x2="150" y2="220" stroke="#475569" stroke-width="3"/>
+                                <line x1="360" y1="100" x2="360" y2="220" stroke="#475569" stroke-width="3"/>
+                                <line x1="450" y1="30" x2="450" y2="220" stroke="#475569" stroke-width="3"/>
+
+                                <!-- Jalur Rel Roller Coaster (Kurva Kubik) -->
+                                <path id="coaster-track" d="M 50 30 C 130 30, 170 220, 255 220 C 340 220, 380 30, 460 30" fill="none" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
+
+                                <!-- Kereta Roller Coaster -->
+                                <g id="coaster-cart" transform="translate(50, 30)">
+                                    <circle cx="0" cy="-10" r="11" fill="#f59e0b" stroke="#ffffff" stroke-width="2.5"/>
+                                    <text x="0" y="-6" text-anchor="middle" fill="#0f172a" font-size="9" font-weight="bold" font-family="sans-serif">2kg</text>
+                                </g>
+                            </svg>
+
+                            <!-- Slider Posisi Ketinggian Kereta -->
+                            <div class="mt-3 bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="em-height-slider" class="text-xs sm:text-sm font-semibold text-slate-200">
+                                        Atur Ketinggian Kereta ($h$):
+                                    </label>
+                                    <span id="em-h-display" class="font-mono font-bold text-amber-400 text-sm">h = 20.0 m</span>
+                                </div>
+                                <input type="range" id="em-height-slider" min="0" max="20" step="0.5" value="20" class="w-full slider-amber">
+                                <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                    <span>0 m (Dasar Lembah - Kecepatan Maks)</span>
+                                    <span>20 m (Puncak - Diam Sesaat)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grafik Batang Real-time (Ek, Ep, Em) -->
+                        <div class="lg:col-span-5 bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-5">
+                            <h4 class="font-display font-bold text-base text-slate-800 flex items-center justify-between">
+                                <span>Diagram Transformasi Energi</span>
+                                <span class="text-xs font-mono bg-amber-100 text-amber-800 px-2.5 py-1 rounded-md">Total Em = 400 J</span>
+                            </h4>
+
+                            <!-- Area Bar Chart -->
+                            <div class="grid grid-cols-3 gap-4 h-52 items-end pt-6 pb-2 px-4 bg-white rounded-xl border border-slate-200">
+                                <!-- Bar Energi Kinetik -->
+                                <div class="flex flex-col items-center h-full justify-end">
+                                    <span id="em-bar-ek-val" class="font-mono font-bold text-xs text-primary-700 mb-1.5">0 J</span>
+                                    <div class="w-full max-w-[56px] bg-slate-100 rounded-t-lg h-36 flex items-end overflow-hidden border border-slate-200">
+                                        <div id="em-bar-ek" class="w-full bg-primary-600 transition-all duration-150 rounded-t-md" style="height: 0%;"></div>
+                                    </div>
+                                    <span class="text-xs font-bold text-slate-700 mt-2">E<sub>k</sub></span>
+                                </div>
+
+                                <!-- Bar Energi Potensial -->
+                                <div class="flex flex-col items-center h-full justify-end">
+                                    <span id="em-bar-ep-val" class="font-mono font-bold text-xs text-secondary-700 mb-1.5">400 J</span>
+                                    <div class="w-full max-w-[56px] bg-slate-100 rounded-t-lg h-36 flex items-end overflow-hidden border border-slate-200">
+                                        <div id="em-bar-ep" class="w-full bg-secondary-600 transition-all duration-150 rounded-t-md" style="height: 100%;"></div>
+                                    </div>
+                                    <span class="text-xs font-bold text-slate-700 mt-2">E<sub>p</sub></span>
+                                </div>
+
+                                <!-- Bar Energi Mekanik (Selalu 100%) -->
+                                <div class="flex flex-col items-center h-full justify-end">
+                                    <span id="em-bar-em-val" class="font-mono font-bold text-xs text-amber-700 mb-1.5">400 J</span>
+                                    <div class="w-full max-w-[56px] bg-slate-100 rounded-t-lg h-36 flex items-end overflow-hidden border border-slate-200">
+                                        <div id="em-bar-em" class="w-full bg-amber-500 transition-all duration-150 rounded-t-md" style="height: 100%;"></div>
+                                    </div>
+                                    <span class="text-xs font-bold text-slate-700 mt-2">E<sub>m</sub></span>
+                                </div>
+                            </div>
+
+                            <!-- Info Kecepatan Sesaat -->
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-center justify-between text-sm">
+                                <span class="text-slate-600">Kecepatan sesaat kereta ($v$):</span>
+                                <span id="em-vel-instant" class="font-mono font-bold text-primary-700 text-base">0,00 m/s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN 4: CONTOH SOAL DAN PEMBAHASAN                      -->
+        <!-- ========================================================= -->
+        <section id="contoh-soal" class="scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 font-display font-bold text-lg flex items-center justify-center">4</span>
+                <div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Contoh Soal & Pembahasan Bertahap</h2>
+                    <p class="text-slate-500 text-sm">Pelajari langkah penyelesaian soal sebelum mengerjakan latihan mandiri</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Contoh Soal 1: Energi Kinetik -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full bg-primary-100 text-primary-700 text-xs font-bold">Contoh 1 &bull; Energi Kinetik</span>
+                            <span class="text-xs text-slate-400 font-mono">Level: Dasar</span>
+                        </div>
+                        <p class="text-slate-800 font-medium leading-relaxed">
+                            Sebuah sepeda motor beserta pengendaranya memiliki massa total <strong>150 kg</strong> melaju di jalan lurus dengan kecepatan tetap <strong>20 m/s</strong>. Berapakah besar energi kinetik sepeda motor tersebut?
+                        </p>
+                    </div>
+
+                    <div class="px-6 pb-6">
+                        <button type="button" onclick="toggleSolution('sol-1', this)" class="w-full py-2.5 px-4 rounded-xl bg-primary-50 hover:bg-primary-100 text-primary-700 font-semibold text-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>Lihat Pembahasan Langkah demi Langkah</span>
+                        </button>
+
+                        <div id="sol-1" class="hidden mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm space-y-2.5 text-slate-700">
+                            <div>
+                                <strong class="text-slate-900">1. Diketahui:</strong><br>
+                                Massa ($m$) = $150\text{ kg}$<br>
+                                Kecepatan ($v$) = $20\text{ m/s}$
+                            </div>
+                            <div>
+                                <strong class="text-slate-900">2. Ditanya:</strong><br>
+                                Energi Kinetik ($E_k$) = ...?
+                            </div>
+                            <div>
+                                <strong class="text-slate-900">3. Penyelesaian:</strong><br>
+                                $E_k = \frac{1}{2} \cdot m \cdot v^2$<br>
+                                $E_k = \frac{1}{2} \cdot 150 \cdot (20)^2$<br>
+                                $E_k = 75 \cdot 400$<br>
+                                <span class="inline-block mt-1 px-2.5 py-1 rounded bg-primary-600 text-white font-bold">E<sub>k</sub> = 30.000 Joule (atau 30 kJ)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contoh Soal 2: Energi Potensial -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full bg-secondary-100 text-secondary-700 text-xs font-bold">Contoh 2 &bull; Energi Potensial</span>
+                            <span class="text-xs text-slate-400 font-mono">Level: Dasar</span>
+                        </div>
+                        <p class="text-slate-800 font-medium leading-relaxed">
+                            Buah mangga bermassa <strong>0,5 kg</strong> menggantung pada tangkai pohon pada ketinggian <strong>6 meter</strong> di atas permukaan tanah. Jika percepatan gravitasi bumi $g = 10\text{ m/s}^2$, hitunglah energi potensial buah mangga tersebut!
+                        </p>
+                    </div>
+
+                    <div class="px-6 pb-6">
+                        <button type="button" onclick="toggleSolution('sol-2', this)" class="w-full py-2.5 px-4 rounded-xl bg-secondary-50 hover:bg-secondary-100 text-secondary-700 font-semibold text-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>Lihat Pembahasan Langkah demi Langkah</span>
+                        </button>
+
+                        <div id="sol-2" class="hidden mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm space-y-2.5 text-slate-700">
+                            <div>
+                                <strong class="text-slate-900">1. Diketahui:</strong><br>
+                                Massa ($m$) = $0,5\text{ kg}$<br>
+                                Ketinggian ($h$) = $6\text{ m}$<br>
+                                Gravitasi ($g$) = $10\text{ m/s}^2$
+                            </div>
+                            <div>
+                                <strong class="text-slate-900">2. Ditanya:</strong><br>
+                                Energi Potensial ($E_p$) = ...?
+                            </div>
+                            <div>
+                                <strong class="text-slate-900">3. Penyelesaian:</strong><br>
+                                $E_p = m \cdot g \cdot h$<br>
+                                $E_p = 0,5 \cdot 10 \cdot 6$<br>
+                                $E_p = 5 \cdot 6$<br>
+                                <span class="inline-block mt-1 px-2.5 py-1 rounded bg-secondary-600 text-white font-bold">E<sub>p</sub> = 30 Joule</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contoh Soal 3: Energi Mekanik -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full bg-accent-100 text-accent-700 text-xs font-bold">Contoh 3 &bull; Energi Mekanik</span>
+                            <span class="text-xs text-slate-400 font-mono">Level: Menengah</span>
+                        </div>
+                        <p class="text-slate-800 font-medium leading-relaxed">
+                            Seekor burung elang bermassa <strong>2 kg</strong> terbang pada ketinggian <strong>15 meter</strong> di atas tanah dengan kecepatan <strong>10 m/s</strong>. Jika $g = 10\text{ m/s}^2$, tentukan besar energi mekanik burung elang tersebut!
+                        </p>
+                    </div>
+
+                    <div class="px-6 pb-6">
+                        <button type="button" onclick="toggleSolution('sol-3', this)" class="w-full py-2.5 px-4 rounded-xl bg-accent-50 hover:bg-accent-100 text-accent-700 font-semibold text-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>Lihat Pembahasan Langkah demi Langkah</span>
+                        </button>
+
+                        <div id="sol-3" class="hidden mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm space-y-2.5 text-slate-700">
+                            <div>
+                                <strong class="text-slate-900">1. Diketahui:</strong><br>
+                                $m = 2\text{ kg}$, $h = 15\text{ m}$, $v = 10\text{ m/s}$, $g = 10\text{ m/s}^2$
+                            </div>
+                            <div>
+                                <strong class="text-slate-900">2. Hitung $E_p$ dan $E_k$:</strong><br>
+                                $E_p = m \cdot g \cdot h = 2 \cdot 10 \cdot 15 = 300\text{ J}$<br>
+                                $E_k = \frac{1}{2} \cdot m \cdot v^2 = \frac{1}{2} \cdot 2 \cdot 10^2 = 100\text{ J}$
+                            </div>
+                            <div>
+                                <strong class="text-slate-900">3. Hitung Energi Mekanik ($E_m$):</strong><br>
+                                $E_m = E_p + E_k = 300 + 100$<br>
+                                <span class="inline-block mt-1 px-2.5 py-1 rounded bg-amber-600 text-white font-bold">E<sub>m</sub> = 400 Joule</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contoh Soal 4: Hukum Kekekalan Energi Mekanik -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold">Contoh 4 &bull; Kekekalan Energi</span>
+                            <span class="text-xs text-slate-400 font-mono">Level: Tantangan</span>
+                        </div>
+                        <p class="text-slate-800 font-medium leading-relaxed">
+                            Sebuah bola bermassa <strong>1 kg</strong> jatuh bebas dari atap gedung setinggi <strong>20 meter</strong> tanpa kecepatan awal ($v_1 = 0$). Berapakah kecepatan bola saat berada pada ketinggian <strong>15 meter</strong> dari tanah? ($g = 10\text{ m/s}^2$)
+                        </p>
+                    </div>
+
+                    <div class="px-6 pb-6">
+                        <button type="button" onclick="toggleSolution('sol-4', this)" class="w-full py-2.5 px-4 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold text-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>Lihat Pembahasan Langkah demi Langkah</span>
+                        </button>
+
+                        <div id="sol-4" class="hidden mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm space-y-2.5 text-slate-700">
+                            <div>
+                                <strong class="text-slate-900">1. Hukum Kekekalan Energi Mekanik:</strong><br>
+                                $E_{m1} = E_{m2}$<br>
+                                $E_{p1} + E_{k1} = E_{p2} + E_{k2}$
+                            </div>
+                            <div>
+                                <strong class="text-slate-900">2. Masukkan nilai (saat $h_1 = 20\text{ m}$, $v_1 = 0$):</strong><br>
+                                $(m \cdot g \cdot h_1) + 0 = (m \cdot g \cdot h_2) + (\frac{1}{2} \cdot m \cdot v_2^2)$<br>
+                                $(1 \cdot 10 \cdot 20) = (1 \cdot 10 \cdot 15) + (\frac{1}{2} \cdot 1 \cdot v_2^2)$<br>
+                                $200 = 150 + 0,5 \cdot v_2^2$
+                            </div>
+                            <div>
+                                <strong class="text-slate-900">3. Cari nilai $v_2$:</strong><br>
+                                $0,5 \cdot v_2^2 = 200 - 150 = 50$<br>
+                                $v_2^2 = \frac{50}{0,5} = 100 \Rightarrow v_2 = \sqrt{100}$<br>
+                                <span class="inline-block mt-1 px-2.5 py-1 rounded bg-indigo-600 text-white font-bold">v<sub>2</sub> = 10 m/s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN 5: LATIHAN SOAL INTERAKTIF (10 BUTIR)              -->
+        <!-- ========================================================= -->
+        <section id="latihan-soal" class="scroll-mt-24">
+            <div class="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-3xl p-6 sm:p-10 text-white shadow-xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/15 pb-6 mb-8">
+                    <div>
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold mb-2">
+                            <i class="fa-solid fa-award"></i> Evaluasi Pemahaman Siswa
+                        </span>
+                        <h2 class="font-display text-2xl sm:text-3xl font-bold">Latihan Soal Interaktif (10 Butir)</h2>
+                        <p class="text-slate-300 text-sm mt-1">Pilih satu jawaban yang paling tepat untuk setiap soal, lalu klik tombol <strong>Periksa Jawaban & Lihat Nilai</strong> di bagian bawah.</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl px-5 py-3 text-center shrink-0">
+                        <span class="text-xs text-slate-300 block">Terjawab</span>
+                        <span id="quiz-progress-text" class="font-display font-extrabold text-xl text-amber-300">0 / 10</span>
+                    </div>
+                </div>
+
+                <!-- Peringatan Validasi (Pengganti alert) -->
+                <div id="quiz-alert" class="hidden mb-6 p-4 rounded-xl bg-rose-500/20 border border-rose-400 text-rose-100 text-sm flex items-center gap-3">
+                    <i class="fa-solid fa-triangle-exclamation text-rose-400 text-lg"></i>
+                    <span id="quiz-alert-msg">Mohon jawab seluruh 10 soal terlebih dahulu sebelum melihat nilai akhir!</span>
+                </div>
+
+                <!-- Container 10 Soal yang Di-render via JS -->
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Soal akan diisi otomatis oleh JavaScript -->
+                </div>
+
+                <!-- Tombol Submit Kuis -->
+                <div id="quiz-submit-area" class="mt-8 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-xs sm:text-sm text-slate-300">
+                        <i class="fa-solid fa-circle-info text-sky-400 mr-1"></i>
+                        Pembahasan lengkap setiap nomor akan muncul otomatis setelah kamu mengirimkan jawaban.
+                    </p>
+                    <button type="button" onclick="submitQuiz()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-display font-extrabold text-base shadow-lg transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span>Periksa Jawaban & Lihat Nilai</span>
+                    </button>
+                </div>
+
+                <!-- Panel Hasil Akhir Kuis (Muncul setelah submit) -->
+                <div id="quiz-result-panel" class="hidden mt-8 bg-white text-slate-900 rounded-2xl p-6 sm:p-8 shadow-2xl border-4 border-amber-400">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="flex items-center gap-5">
+                            <div id="score-badge-circle" class="w-24 h-24 rounded-full bg-primary-600 text-white flex flex-col items-center justify-center shrink-0 shadow-lg">
+                                <span class="text-xs uppercase font-bold tracking-wider opacity-80">Skor</span>
+                                <span id="final-score-num" class="font-display text-3xl font-extrabold">100</span>
+                            </div>
+                            <div>
+                                <span id="score-predicate" class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 mb-1">Sangat Memuaskan!</span>
+                                <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-900" id="score-title">Kerja Bagus! Kamu Menguasai Materi Ini.</h3>
+                                <p class="text-slate-600 text-sm mt-1" id="score-summary">Kamu menjawab benar 10 dari 10 soal. Silakan gulir ke atas untuk meninjau pembahasan detail tiap nomor.</p>
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="resetQuiz()" class="w-full md:w-auto px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition flex items-center justify-center gap-2 shrink-0">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>Ulangi Kuis</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer dengan Identitas Penyusun -->
+    <footer class="bg-white border-t border-slate-200 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-primary-600 text-white flex items-center justify-center">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <p class="font-display font-bold text-slate-900 text-sm">Bahan Ajar IPA Interaktif &mdash; Energi & Kekekalannya</p>
+                        <p class="text-xs text-primary-700 font-semibold">Disusun oleh: Ibu Alifa Pertiwi</p>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500 text-center sm:text-right">
+                    Media Pembelajaran Digital IPA &bull; Dapat digunakan untuk pembelajaran tatap muka maupun belajar mandiri.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================================= -->
+    <!-- SCRIPT INTERAKTIVITAS & LOGIKA SIMULASI + KUIS            -->
+    <!-- ========================================================= -->
+    <script>
+        // -------------------------------------------------------------
+        // 1. NAVIGASI MOBILE
+        // -------------------------------------------------------------
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // -------------------------------------------------------------
+        // 2. SIMULASI 1: ENERGI KINETIK (Ek = 1/2 * m * v^2)
+        // -------------------------------------------------------------
+        const ekMassInput = document.getElementById('ek-mass');
+        const ekVelInput = document.getElementById('ek-vel');
+        const ekMassVal = document.getElementById('ek-mass-val');
+        const ekVelVal = document.getElementById('ek-vel-val');
+        const ekFormulaLive = document.getElementById('ek-formula-live');
+        const ekResult = document.getElementById('ek-result');
+        const ekRoad = document.getElementById('ek-road');
+        const ekCarWrapper = document.getElementById('ek-car-wrapper');
+        const ekCarBadge = document.getElementById('ek-car-badge');
+        const ekWindLines = document.getElementById('ek-wind-lines');
+
+        function formatNumberID(num) {
+            return num.toLocaleString('id-ID');
+        }
+
+        function updateEkSimulation() {
+            const m = parseFloat(ekMassInput.value);
+            const v = parseFloat(ekVelInput.value);
+            const ek = 0.5 * m * v * v;
+
+            // Update Label Angka
+            ekMassVal.textContent = `${formatNumberID(m)} kg`;
+            ekVelVal.textContent = `${formatNumberID(v)} m/s`;
+            ekCarBadge.textContent = `m = ${formatNumberID(m)} kg`;
+
+            // Update Rumus & Hasil
+            ekFormulaLive.innerHTML = `E<sub>k</sub> = &frac12; &times; ${formatNumberID(m)} &times; ${v}<sup>2</sup>`;
+            const kjText = ek >= 1000 ? ` <span class="text-sm font-normal text-blue-200">(${(ek / 1000).toLocaleString('id-ID')} kJ)</span>` : '';
+            ekResult.innerHTML = `${formatNumberID(ek)} J${kjText}`;
+
+            // Visualisasi Skala Mobil berdasarkan Massa (0.85x hingga 1.25x)
+            const scale = 0.85 + ((m - 100) / 1900) * 0.4;
+            ekCarWrapper.style.transform = `scale(${scale.toFixed(2)})`;
+
+            // Visualisasi Kecepatan Jalan & Efek Angin
+            if (v === 0) {
+                ekRoad.style.animationPlayState = 'paused';
+                ekCarWrapper.classList.remove('car-vibrate');
+                ekWindLines.style.opacity = '0';
+            } else {
+                ekRoad.style.animationPlayState = 'running';
+                // Semakin besar v, durasi animasi semakin kecil (cepat)
+                const duration = Math.max(0.12, 3.2 / v);
+                ekRoad.style.setProperty('--road-speed', `${duration.toFixed(2)}s`);
+                ekCarWrapper.classList.add('car-vibrate');
+                ekWindLines.style.opacity = v >= 15 ? '0.9' : '0.35';
+            }
+        }
+
+        ekMassInput.addEventListener('input', updateEkSimulation);
+        ekVelInput.addEventListener('input', updateEkSimulation);
+
+        // -------------------------------------------------------------
+        // 3. SIMULASI 2: ENERGI POTENSIAL (Ep = m * g * h)
+        // -------------------------------------------------------------
+        const epMassInput = document.getElementById('ep-mass');
+        const epHeightInput = document.getElementById('ep-height');
+        const epMassVal = document.getElementById('ep-mass-val');
+        const epHeightVal = document.getElementById('ep-height-val');
+        const epFormulaLive = document.getElementById('ep-formula-live');
+        const epResult = document.getElementById('ep-result');
+        const epBall = document.getElementById('ep-ball');
+        const epBallLabel = document.getElementById('ep-ball-label');
+        const epBallCircle = document.getElementById('ep-ball-circle');
+        const epHeightLine = document.getElementById('ep-height-line');
+
+        function updateEpSimulation() {
+            const m = parseFloat(epMassInput.value);
+            const h = parseFloat(epHeightInput.value);
+            const g = 10;
+            const ep = m * g * h;
+
+            // Update Label
+            epMassVal.textContent = `${m} kg`;
+            epHeightVal.textContent = `${h} m`;
+            epBallLabel.textContent = `h = ${h} m`;
+            epBallCircle.textContent = `${m}kg`;
+
+            // Ukuran bola sedikit membesar sesuai massa
+            const ballSize = 38 + Math.round((m / 50) * 18);
+            epBallCircle.style.width = `${ballSize}px`;
+            epBallCircle.style.height = `${ballSize}px`;
+
+            // Posisi vertikal bola (maksimal 165px pada h = 50m)
+            const pixelBottom = (h / 50) * 165;
+            epBall.style.bottom = `${pixelBottom}px`;
+            epHeightLine.style.height = `${pixelBottom}px`;
+
+            // Rumus & Hasil
+            epFormulaLive.innerHTML = `E<sub>p</sub> = ${m} &times; 10 &times; ${h}`;
+            epResult.textContent = `${formatNumberID(ep)} J`;
+        }
+
+        epMassInput.addEventListener('input', updateEpSimulation);
+        epHeightInput.addEventListener('input', updateEpSimulation);
+
+        // -------------------------------------------------------------
+        // 4. SIMULASI 3: ENERGI MEKANIK & HUKUM KEKEKALAN (ROLLER COASTER)
+        // -------------------------------------------------------------
+        const emSlider = document.getElementById('em-height-slider');
+        const emHDisplay = document.getElementById('em-h-display');
+        const emBarEk = document.getElementById('em-bar-ek');
+        const emBarEp = document.getElementById('em-bar-ep');
+        const emBarEm = document.getElementById('em-bar-em');
+        const emBarEkVal = document.getElementById('em-bar-ek-val');
+        const emBarEpVal = document.getElementById('em-bar-ep-val');
+        const emBarEmVal = document.getElementById('em-bar-em-val');
+        const emVelInstant = document.getElementById('em-vel-instant');
+        const coasterCart = document.getElementById('coaster-cart');
+
+        function setEmHeight(val) {
+            emSlider.value = val;
+            updateEmSimulation();
+        }
+
+        function updateEmSimulation() {
+            const m = 2; // 2 kg
+            const g = 10; // 10 m/s^2
+            const hMax = 20; // 20 m
+            const emTotal = m * g * hMax; // 400 J konstan
+
+            const h = parseFloat(emSlider.value);
+            const ep = m * g * h;
+            const ek = emTotal - ep;
+            // v = akar(2 * Ek / m)
+            const v = Math.sqrt((2 * ek) / m);
+
+            // Update Teks
+            emHDisplay.textContent = `h = ${h.toFixed(1)} m`;
+            emBarEpVal.textContent = `${Math.round(ep)} J`;
+            emBarEkVal.textContent = `${Math.round(ek)} J`;
+            emBarEmVal.textContent = `${emTotal} J`;
+            emVelInstant.textContent = `${v.toFixed(2).replace('.', ',')} m/s`;
+
+            // Update Tinggi Batang Grafik (%)
+            const epPercent = (ep / emTotal) * 100;
+            const ekPercent = (ek / emTotal) * 100;
+            emBarEp.style.height = `${epPercent}%`;
+            emBarEk.style.height = `${ekPercent}%`;
+            emBarEm.style.height = `100%`;
+
+            // Update Posisi Kereta di Kurva SVG (dari x=50, y=30 hingga dasar lembah x=255, y=220)
+            // Pemetaan tinggi h (20 -> 0) ke parameter t (0 -> 1 pada separuh kurva kiri)
+            const progress = (hMax - h) / hMax; // 0 di puncak, 1 di dasar
+            const svgX = 50 + progress * 205; // bergerak dari x=50 ke x=255
+            const svgY = 220 - (h / hMax) * 190; // y=30 saat h=20, y=220 saat h=0
+            coasterCart.setAttribute('transform', `translate(${svgX.toFixed(1)}, ${svgY.toFixed(1)})`);
+        }
+
+        emSlider.addEventListener('input', updateEmSimulation);
+
+        // -------------------------------------------------------------
+        // 5. TOGGLE PEMBAHASAN CONTOH SOAL
+        // -------------------------------------------------------------
+        function toggleSolution(id, btn) {
+            const box = document.getElementById(id);
+            const isHidden = box.classList.contains('hidden');
+            if (isHidden) {
+                box.classList.remove('hidden');
+                btn.innerHTML = `<i class="fa-solid fa-eye-slash"></i> <span>Sembunyikan Pembahasan</span>`;
+            } else {
+                box.classList.add('hidden');
+                btn.innerHTML = `<i class="fa-solid fa-eye"></i> <span>Lihat Pembahasan Langkah demi Langkah</span>`;
+            }
+        }
+
+        // -------------------------------------------------------------
+        // 6. BANK SOAL & LOGIKA LATIHAN INTERAKTIF (10 BUTIR)
+        // -------------------------------------------------------------
+        const quizQuestions = [
+            {
+                q: "Energi yang dimiliki oleh suatu benda karena geraknya disebut...",
+                options: [
+                    "Energi Potensial Gravitasi",
+                    "Energi Kinetik",
+                    "Energi Kimia",
+                    "Energi Kalor"
+                ],
+                answer: 1,
+                explanation: "Energi Kinetik adalah energi yang dimiliki oleh benda yang sedang bergerak. Semakin cepat benda bergerak, semakin besar energi kinetiknya."
+            },
+            {
+                q: "Sebuah bola bermassa 2 kg ditendang sehingga bergerak dengan kecepatan 4 m/s. Besar energi kinetik bola tersebut adalah...",
+                options: [
+                    "8 Joule",
+                    "16 Joule",
+                    "32 Joule",
+                    "64 Joule"
+                ],
+                answer: 1,
+                explanation: "Diketahui m = 2 kg, v = 4 m/s. Rumus: Ek = 1/2 × m × v² = 1/2 × 2 × (4)² = 1 × 16 = 16 Joule."
+            },
+            {
+                q: "Dua buah mobil A dan B memiliki massa yang sama. Jika kecepatan mobil A adalah 2 kali kecepatan mobil B, maka perbandingan energi kinetik mobil A dan mobil B adalah...",
+                options: [
+                    "1 : 2",
+                    "2 : 1",
+                    "4 : 1",
+                    "1 : 4"
+                ],
+                answer: 2,
+                explanation: "Karena Ek berbanding lurus dengan kuadrat kecepatan (v²), jika vA = 2 vB, maka EkA / EkB = (2)² / (1)² = 4 : 1."
+            },
+            {
+                q: "Faktor-faktor berikut ini yang memengaruhi besarnya Energi Potensial Gravitasi suatu benda adalah...",
+                options: [
+                    "Massa benda, percepatan gravitasi, dan ketinggian benda",
+                    "Massa benda, kecepatan benda, dan luas permukaan",
+                    "Kecepatan benda, percepatan gravitasi, dan waktu tempuh",
+                    "Massa jenis benda, volume benda, dan suhu"
+                ],
+                answer: 0,
+                explanation: "Berdasarkan rumus Ep = m · g · h, energi potensial gravitasi dipengaruhi oleh massa (m), percepatan gravitasi (g), dan ketinggian (h)."
+            },
+            {
+                q: "Sebuah lampu hias bermassa 3 kg tergantung pada langit-langit ruangan setinggi 4 meter dari lantai. Jika g = 10 m/s², energi potensial lampu hias tersebut adalah...",
+                options: [
+                    "12 Joule",
+                    "30 Joule",
+                    "60 Joule",
+                    "120 Joule"
+                ],
+                answer: 3,
+                explanation: "Diketahui m = 3 kg, h = 4 m, g = 10 m/s². Ep = m × g × h = 3 × 10 × 4 = 120 Joule."
+            },
+            {
+                q: "Perhatikan pernyataan berikut:\n(1) Air terjun yang mengalir dari tebing tinggi\n(2) Buah durian yang menggantung di pohon\n(3) Busur panah yang ditarik\n(4) Peluru yang melesat dari senapan\nContoh benda yang memiliki energi potensial ditunjukkan oleh nomor...",
+                options: [
+                    "(1) dan (4)",
+                    "(2) dan (3)",
+                    "(1) dan (2)",
+                    "(3) dan (4)"
+                ],
+                answer: 1,
+                explanation: "Buah durian di pohon memiliki energi potensial gravitasi (ketinggian), sedangkan busur panah yang ditarik memiliki energi potensial pegas (elastisitas)."
+            },
+            {
+                q: "Sebuah drone bermassa 1,5 kg terbang pada ketinggian 10 m dengan kecepatan 4 m/s. Jika g = 10 m/s², besar energi mekanik drone tersebut adalah...",
+                options: [
+                    "150 Joule",
+                    "162 Joule",
+                    "174 Joule",
+                    "180 Joule"
+                ],
+                answer: 1,
+                explanation: "Ep = m·g·h = 1,5 × 10 × 10 = 150 J. Ek = 1/2·m·v² = 1/2 × 1,5 × 4² = 0,75 × 16 = 12 J. Maka Em = Ep + Ek = 150 + 12 = 162 Joule."
+            },
+            {
+                q: "Ketika sebuah kelapa jatuh bebas dari pohonnya menuju ke tanah (gesekan udara diabaikan), pernyataan yang benar mengenai perubahan energinya adalah...",
+                options: [
+                    "Energi potensial bertambah dan energi kinetik berkurang",
+                    "Energi potensial berkurang dan energi kinetik bertambah",
+                    "Energi mekanik terus bertambah hingga menyentuh tanah",
+                    "Energi kinetik dan energi potensial keduanya tetap"
+                ],
+                answer: 1,
+                explanation: "Saat jatuh ke bawah, ketinggian (h) berkurang sehingga Ep berkurang, sementara kecepatannya bertambah sehingga Ek meningkat. Total energi mekaniknya (Em) tetap konstan."
+            },
+            {
+                q: "Sebuah batu bermassa 2 kg jatuh bebas dari ketinggian 20 m di atas tanah. Jika g = 10 m/s², besar energi kinetik batu tepat saat menyentuh tanah adalah...",
+                options: [
+                    "40 Joule",
+                    "200 Joule",
+                    "400 Joule",
+                    "800 Joule"
+                ],
+                answer: 2,
+                explanation: "Berdasarkan Hukum Kekekalan Energi Mekanik, seluruh Ep di puncak berubah menjadi Ek di dasar (h = 0). Ek_dasar = Ep_puncak = m × g × h = 2 × 10 × 20 = 400 Joule."
+            },
+            {
+                q: "Sebuah benda bermassa 1 kg dilemparkan vertikal ke atas dengan kecepatan awal 20 m/s. Jika g = 10 m/s², ketinggian maksimum yang dapat dicapai benda tersebut adalah...",
+                options: [
+                    "10 meter",
+                    "15 meter",
+                    "20 meter",
+                    "40 meter"
+                ],
+                answer: 2,
+                explanation: "Di titik tertinggi, kecepatan benda v2 = 0 (Ek2 = 0). Dengan Em1 = Em2: 1/2 · m · v1² = m · g · h_maks => 1/2 × 1 × 20² = 1 × 10 × h_maks => 200 = 10 · h_maks => h_maks = 20 meter."
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const quizProgressText = document.getElementById('quiz-progress-text');
+        const quizAlert = document.getElementById('quiz-alert');
+        const quizResultPanel = document.getElementById('quiz-result-panel');
+        let userAnswers = new Array(quizQuestions.length).fill(null);
+        let isQuizSubmitted = false;
+
+        function renderQuiz() {
+            quizContainer.innerHTML = '';
+            const optionLetters = ['A', 'B', 'C', 'D'];
+
+            quizQuestions.forEach((item, qIndex) => {
+                const card = document.createElement('div');
+                card.id = `q-card-${qIndex}`;
+                card.className = 'bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-6 transition-all';
+
+                // Format baris baru pada pertanyaan jika ada
+                const formattedQuestion = item.q.replace(/\n/g, '<br>');
+
+                let optionsHTML = '';
+                item.options.forEach((opt, oIndex) => {
+                    optionsHTML += `
+                        <label id="opt-label-${qIndex}-${oIndex}" class="flex items-start gap-3.5 p-3.5 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 cursor-pointer transition select-none">
+                            <input type="radio" name="question-${qIndex}" value="${oIndex}" onchange="selectOption(${qIndex}, ${oIndex})" class="mt-1 accent-emerald-400 w-4 h-4 shrink-0">
+                            <span class="font-mono font-bold text-amber-300 text-sm">${optionLetters[oIndex]}.</span>
+                            <span class="text-sm sm:text-base text-slate-100 leading-snug">${opt}</span>
+                        </label>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="flex items-start gap-3 mb-4">
+                        <span class="w-8 h-8 rounded-lg bg-primary-600 text-white font-display font-bold text-sm flex items-center justify-center shrink-0 mt-0.5">
+                            ${qIndex + 1}
+                        </span>
+                        <p class="text-base sm:text-lg font-medium text-white leading-relaxed">${formattedQuestion}</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pl-0 sm:pl-11">
+                        ${optionsHTML}
+                    </div>
+                    <!-- Kotak Pembahasan per Soal (Tersembunyi sebelum submit) -->
+                    <div id="q-feedback-${qIndex}" class="hidden mt-4 sm:ml-11 p-4 rounded-xl text-sm border"></div>
+                `;
+
+                quizContainer.appendChild(card);
+            });
+        }
+
+        function selectOption(qIndex, oIndex) {
+            if (isQuizSubmitted) return;
+            userAnswers[qIndex] = oIndex;
+
+            // Update highlight opsi terpilih
+            for (let i = 0; i < 4; i++) {
+                const lbl = document.getElementById(`opt-label-${qIndex}-${i}`);
+                if (i === oIndex) {
+                    lbl.classList.add('border-amber-400', 'bg-amber-500/15');
+                } else {
+                    lbl.classList.remove('border-amber-400', 'bg-amber-500/15');
+                }
+            }
+
+            // Update counter terjawab
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            quizProgressText.textContent = `${answeredCount} / ${quizQuestions.length}`;
+            quizAlert.classList.add('hidden');
+        }
+
+        function submitQuiz() {
+            const unansweredIndex = userAnswers.findIndex(a => a === null);
+            if (unansweredIndex !== -1) {
+                quizAlert.classList.remove('hidden');
+                const targetCard = document.getElementById(`q-card-${unansweredIndex}`);
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                targetCard.classList.add('ring-2', 'ring-rose-400');
+                setTimeout(() => targetCard.classList.remove('ring-2', 'ring-rose-400'), 2000);
+                return;
+            }
+
+            isQuizSubmitted = true;
+            let correctCount = 0;
+            const optionLetters = ['A', 'B', 'C', 'D'];
+
+            quizQuestions.forEach((item, qIndex) => {
+                const userChoice = userAnswers[qIndex];
+                const isCorrect = userChoice === item.answer;
+                if (isCorrect) correctCount++;
+
+                // Kunci semua radio button
+                const radios = document.getElementsByName(`question-${qIndex}`);
+                radios.forEach(r => r.disabled = true);
+
+                // Warnai opsi benar dan salah
+                for (let i = 0; i < 4; i++) {
+                    const lbl = document.getElementById(`opt-label-${qIndex}-${i}`);
+                    lbl.classList.remove('border-amber-400', 'bg-amber-500/15', 'hover:bg-white/10');
+                    lbl.classList.add('cursor-default');
+
+                    if (i === item.answer) {
+                        lbl.classList.add('border-emerald-400', 'bg-emerald-500/25');
+                    } else if (i === userChoice && !isCorrect) {
+                        lbl.classList.add('border-rose-400', 'bg-rose-500/25');
+                    }
+                }
+
+                // Tampilkan feedback pembahasan
+                const feedbackBox = document.getElementById(`q-feedback-${qIndex}`);
+                feedbackBox.classList.remove('hidden');
+                if (isCorrect) {
+                    feedbackBox.classList.add('bg-emerald-950/80', 'border-emerald-500/50', 'text-emerald-100');
+                    feedbackBox.innerHTML = `
+                        <div class="font-bold text-emerald-300 mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check"></i> Jawaban Kamu Benar! (${optionLetters[item.answer]})
+                        </div>
+                        <p class="text-slate-200 leading-relaxed"><strong>Pembahasan:</strong> ${item.explanation}</p>
+                    `;
+                } else {
+                    feedbackBox.classList.add('bg-rose-950/80', 'border-rose-500/50', 'text-rose-100');
+                    feedbackBox.innerHTML = `
+                        <div class="font-bold text-rose-300 mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-xmark"></i> Kurang Tepat. Jawaban benar adalah ${optionLetters[item.answer]}.
+                        </div>
+                        <p class="text-slate-200 leading-relaxed"><strong>Pembahasan:</strong> ${item.explanation}</p>
+                    `;
+                }
+            });
+
+            // Hitung Skor Akhir (Skala 100)
+            const score = correctCount * 10;
+            const scoreBadge = document.getElementById('score-badge-circle');
+            const finalScoreNum = document.getElementById('final-score-num');
+            const scorePredicate = document.getElementById('score-predicate');
+            const scoreTitle = document.getElementById('score-title');
+            const scoreSummary = document.getElementById('score-summary');
+
+            finalScoreNum.textContent = score;
+            scoreSummary.textContent = `Kamu berhasil menjawab benar ${correctCount} dari 10 soal. Silakan tinjau pembahasan pada masing-masing nomor di atas.`;
+
+            scoreBadge.className = 'w-24 h-24 rounded-full text-white flex flex-col items-center justify-center shrink-0 shadow-lg';
+            if (score >= 80) {
+                scoreBadge.classList.add('bg-emerald-600');
+                scorePredicate.className = 'inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 mb-1';
+                scorePredicate.textContent = 'Sangat Baik (Tuntas)';
+                scoreTitle.textContent = 'Luar Biasa! Pemahamanmu Sangat Kuat.';
+            } else if (score >= 60) {
+                scoreBadge.classList.add('bg-amber-500');
+                scorePredicate.className = 'inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 mb-1';
+                scorePredicate.textContent = 'Cukup Baik';
+                scoreTitle.textContent = 'Bagus! Tingkatkan Lagi Ketelitianmu.';
+            } else {
+                scoreBadge.classList.add('bg-rose-600');
+                scorePredicate.className = 'inline-block px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 mb-1';
+                scorePredicate.textContent = 'Perlu Belajar Lagi';
+                scoreTitle.textContent = 'Jangan Menyerah! Mari Pelajari Ulang Materinya.';
+            }
+
+            document.getElementById('quiz-submit-area').classList.add('hidden');
+            quizResultPanel.classList.remove('hidden');
+            quizResultPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function resetQuiz() {
+            userAnswers = new Array(quizQuestions.length).fill(null);
+            isQuizSubmitted = false;
+            quizProgressText.textContent = `0 / ${quizQuestions.length}`;
+            quizResultPanel.classList.add('hidden');
+            document.getElementById('quiz-submit-area').classList.remove('hidden');
+            renderQuiz();
+            document.getElementById('latihan-soal').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Inisialisasi saat halaman dimuat
+        window.addEventListener('DOMContentLoaded', () => {
+            updateEkSimulation();
+            updateEpSimulation();
+            updateEmSimulation();
+            renderQuiz();
+        });
+    </script>
+</body>
+</html>
